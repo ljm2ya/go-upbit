@@ -261,6 +261,27 @@ func (client *Client) OrderChance(
 	return
 }
 
+func (client *Client) GetOrder(uuid string) (order *types.Order, err error) {
+	query := map[string]string{
+		"uuid": uuid,
+	}
+
+	token, err := client.Token(query)
+	if err != nil {
+		return
+	}
+
+	options := &util.RequestOptions{
+		Url: baseUrl + "/order",
+		Headers: map[string]string{
+			"Authorization": "Bearer " + token,
+		},
+		Query: query,
+	}
+	err = util.Request(options, &order)
+	return
+}
+
 func (client *Client) Orders(
 	market string,
 	state string,

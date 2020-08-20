@@ -1,9 +1,11 @@
 package types
 
 type OrderChance struct {
-	BeeFee string       `json:"bee_fee"`
+	BidFee string       `json:"bid_fee"`
 	AskFee string       `json:"ask_fee"`
 	Market ChanceMarket `json:"market"`
+	BidAccount Account `json:"bid_account"`
+	AskAccount Account `json:"ask_account"`
 }
 
 type ChanceMarket struct {
@@ -15,8 +17,6 @@ type ChanceMarket struct {
 	Ask        Bid      `json:"ask"`
 	MaxTotal   string   `json:"max_total"`
 	State      string   `json:"state"`
-	BidAccount Account  `json:"bid_account"`
-	AskAccount Account  `json:"ask_account"`
 }
 
 type Bid struct {
@@ -26,9 +26,10 @@ type Bid struct {
 }
 
 type Account struct {
-	Currency       string `json:"currency"`
-	Balance        string `json:"balance"`
-	Locked         string `json:"locked"`
-	AvgKrwBuyPrice string `json:"avg_krw_buy_price"`
-	Modified       bool   `json:"modified"`
+	Currency     string `json:"currency"`
+	Balance      string `json:"balance"`
+	Locked       string `json:"locked"`
+	AvgBuyPrice  string `json:"avg_buy_price"`
+	Modified     bool   `json:"avg_buy_price_modified"`
+	UnitCurrency string `json:"unit_currency"`
 }
